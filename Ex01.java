@@ -6,6 +6,7 @@
 
 import java.util.Scanner;
 
+// 기본 알고리즘
 public class Ex01 {
     /**
      * 두 정수의 합을 구하는 메서드
