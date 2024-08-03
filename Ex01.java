@@ -83,6 +83,7 @@ public class Ex01 {
         int num2 = 5;
         int res = max3(3,22,7);
         
+        // 알고리즘이란 문제 해결을 위한 것, 명확하게 정의되고 순서가 있는 유한 개의 규칙으로 이루어진 집합
         System.out.println(sum(num, num2) + ", " + res);
         System.out.println(med3(10, 5, 8));
 
