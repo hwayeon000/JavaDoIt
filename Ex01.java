@@ -94,20 +94,20 @@ public class Ex01 {
         
         System.out.println("2부터 숫자 6까지의 합 : " + SumFor(2, 6));
         
-        // Scanner scan = new Scanner(System.in);
-        // int n;
-        // // n이 0보다 클때까지 반복
-        // do {
-        //     System.out.println("양수 n의 값 : ");
-        //     n = scan.nextInt();
-        // } while (n <= 0);
+        Scanner scan = new Scanner(System.in);
+        int n;
+        // n이 0보다 클때까지 반복
+        do {
+            System.out.println("양수 n의 값 : ");
+            n = scan.nextInt();
+        } while (n <= 0);
 
-        // int sum = 0;
-        // for (int i = 0; i < n; i++) {
-        //     sum += i;
-        // }
-        // System.out.println("1부터 n까지의 합 : " + sum);
-        // scan.close();
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += i;
+        }
+        System.out.println("1부터 n까지의 합 : " + sum);
+        scan.close();
         
         // 드모르간 법칙 : 각 조건을 부정하고 논리곱을 논리합으로, 논리합을 논리곱으로 바꾸고 다시 전체를 부정하면 원래의 조건과 같다
         // tr || fa 과 !(!tr && !fa) 는 같다.
@@ -148,6 +148,6 @@ public class Ex01 {
     }
 }
 
-// Javadoc 사용방법 
+// Javadoc 사용방법 테스트
 // cmd- .java 파일 위치로 이동
 // javadoc -d doc *.java -encoding utf-8
