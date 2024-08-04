@@ -65,6 +65,30 @@ public class Ex02 {
         return d;
     }
 
+    
+    // 한 해의 경과 일 수 => 윤년, 평년
+    static int[][] mdays = {
+        {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},  // 평년
+        {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}   // 윤년
+    };
+
+    
+    // year년이 윤년인가? (평년 : 0, 윤년: 1)
+    static int isLeap (int year) {
+        return (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) ? 1 : 0;
+    }
+
+    // 서기 y년 m월 d일의 그 해의 경과 일 수를 구함
+    static int dayOfYear (int y, int m, int d) {
+        int days = d;  // 일 수
+
+        for (int i = 1; i < m; i++) {    // 1월 ~ (m-1)월의 일 수를 더함
+            days += mdays[isLeap(y)][i-1];  // isLeap(y) : 평년은 0, 윤년 1
+        }
+        return days;
+    }    
+
+
     public static void main(String[] args) {
         // 2-1 배열
         // 자료구조 : 데이터 단위와 데이터 자체 사이의 물리적 또는 논리적인 관계
@@ -172,7 +196,67 @@ public class Ex02 {
 
         //------------------------------------------------------
 
-        // 소수의 나열
+        // 소수의 나열 - 소수: 1과 자신 이외의 정수로 나누어 떨어지지 않는 정수
+        // 1000 이하의 소수
+        int counter = 0;  // 나눗셈 횟수
+        int ptr = 0;      // 찾은 소수싀 개수
+        int[] prime = new int[500];  // 소수를 저장할 배열
 
+        prime[ptr++] = 2;  // 2는 소수
+        prime[ptr++] = 3;  // 3은 소수
+        
+        for (int n = 5 ; n <= 1000; n += 2) {    // 조사 대상은 홀수만
+            boolean flag = false;
+            for (int i = 1; prime[i] * prime[i] <= n; i++) {
+                counter += 2;                   //  prime[i] * prime[i], n % prime 두 번 계산
+                if (n % prime[i] == 0) {        // 나누어떨어지면 소수가 아님
+                    flag = true;
+                    break;                      // 더 이상 반복은 불필요
+                }
+            }
+            if (!flag) {                       // 마지막까지 나누어떨어지지 않음
+                prime[ptr++] = n;              // 소수로 배열에 저장
+                counter++;
+            }
+        }
+
+        for (int i = 0; i < ptr; i++) {
+            System.out.print(prime[i] + ", ");
+        }
+        System.out.println(counter);  // 14,622 -> 3774
+
+        // 정수 n은 n의 제곱근 이하의 어떤 소수로도 나누어 떨어지지 않는다.
+
+
+        // 다차원 배열
+        // 배열을 구성 요소로 하는 것이 2차원 배열, 2차원 배열을 구성 요소로 하는 것이 3차원 배열
+        int[][] x = new int [2][4];
+        // 행*열이 늘어선 표와 같은 형태로 표현
+        x[0][1] = 37;
+        x[0][3] = 54;
+        x[1][2] = 65;
+        System.out.println(x.length);     // 2
+        System.out.println(x[0].length);  // 4
+
+        for (int i = 0; i < x.length; i++) {
+            for (int j = 0; j < x[0].length; j++) {
+                System.out.printf("%2d ", x[i][j]);
+            }
+            System.out.println();
+        }
+
+
+        // 1월 1일 포함 111일
+        System.out.println(dayOfYear(2024, 4, 20));
+
+        // 확장 for문, for-each문
+        double[] numT = {1.0, 2.0, 3.0, 4.0, 5.0};
+        double total = 0.0;
+        for (double e : numT) {
+            total += e;
+        }
+
+        System.out.println(total);
     }
+
 }
